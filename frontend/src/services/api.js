@@ -64,4 +64,10 @@ export const contactAPI = {
   submit: (data) => api.post('/contact/submit', data),
 };
 
+// Settings API
+export const settingsAPI = {
+  get: () => api.get('/settings'),
+  update: (data) => api.put('/settings', data),
+};
+
 export default api;
