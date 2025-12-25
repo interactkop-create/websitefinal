@@ -99,13 +99,6 @@ export const AdminLogin = () => {
               {loading ? 'Signing In...' : 'Sign In'}
             </Button>
           </form>
-          <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              <strong>Admin Credentials:</strong><br/>
-              Email: admin@interactkop.com<br/>
-              Password: Admin@2024
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>
