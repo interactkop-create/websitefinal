@@ -72,34 +72,42 @@ export const Home = () => {
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                <Users className="h-8 w-8 text-primary" />
+            {stats.active_members > 0 && (
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2">{stats.active_members}+</div>
+                <div className="text-sm text-muted-foreground">Active Members</div>
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">{stats.active_members}+</div>
-              <div className="text-sm text-muted-foreground">Active Members</div>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                <Calendar className="h-8 w-8 text-primary" />
+            )}
+            {stats.total_events > 0 && (
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                  <Calendar className="h-8 w-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2">{stats.total_events}+</div>
+                <div className="text-sm text-muted-foreground">Events This Year</div>
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">{stats.total_events}+</div>
-              <div className="text-sm text-muted-foreground">Events This Year</div>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                <Heart className="h-8 w-8 text-primary" />
+            )}
+            {stats.lives_impacted > 0 && (
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                  <Heart className="h-8 w-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2">{stats.lives_impacted}+</div>
+                <div className="text-sm text-muted-foreground">Lives Impacted</div>
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">{stats.lives_impacted}+</div>
-              <div className="text-sm text-muted-foreground">Lives Impacted</div>
-            </div>
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                <Award className="h-8 w-8 text-primary" />
+            )}
+            {stats.awards_won > 0 && (
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                  <Award className="h-8 w-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-2">{stats.awards_won}+</div>
+                <div className="text-sm text-muted-foreground">Awards Won</div>
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">{stats.awards_won}+</div>
-              <div className="text-sm text-muted-foreground">Awards Won</div>
-            </div>
+            )}
           </div>
         </div>
       </section>
