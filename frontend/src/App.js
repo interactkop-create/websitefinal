@@ -57,6 +57,7 @@ function App() {
                     <Route path="upcoming-events" element={<UpcomingEvents />} />
                     <Route path="board" element={<Board />} />
                     <Route path="news" element={<News />} />
+                    <Route path="gallery" element={<Gallery />} />
                     <Route path="contact" element={<Contact />} />
                   </Routes>
                 </main>
