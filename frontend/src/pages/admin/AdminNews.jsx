@@ -7,6 +7,7 @@ import { Textarea } from '../../components/ui/textarea';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 import { newsAPI } from '../../services/api';
 import { useToast } from '../../hooks/use-toast';
+import { ImageUpload } from '../../components/ImageUpload';
 import {
   Dialog,
   DialogContent,
