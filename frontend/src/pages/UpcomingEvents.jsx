@@ -9,7 +9,23 @@ export const UpcomingEvents = () => {
   const { toast } = useToast();
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [registeredEvents, setRegisteredEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await eventsAPI.getUpcoming();
+        setUpcomingEvents(response.data);
+      } catch (error) {
+        console.error('Error fetching upcoming events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   const handleRegister = (eventId, eventTitle) => {
     if (registeredEvents.includes(eventId)) {
