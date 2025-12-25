@@ -413,6 +413,46 @@ async def submit_contact(contact_data: ContactSubmit):
     return {"message": "Thank you for contacting us. We'll get back to you soon."}
 
 
+# ==================== SITE SETTINGS ROUTES ====================
+
+@api_router.get("/settings")
+async def get_settings():
+    """Get site settings (public)."""
+    settings = await db.site_settings.find_one()
+    if not settings:
+        # Return default values if no settings exist
+        return SiteSettings().dict()
+    return {
+        "active_members": settings.get("active_members", 50),
+        "total_events": settings.get("total_events", 20),
+        "lives_impacted": settings.get("lives_impacted", 1000),
+        "awards_won": settings.get("awards_won", 5)
+    }
+
+
+@api_router.put("/settings")
+async def update_settings(
+    settings_data: SiteSettingsUpdate,
+    current_user: dict = Depends(get_current_user)
+):
+    """Update site settings (admin only)."""
+    update_data = {k: v for k, v in settings_data.dict().items() if v is not None}
+    update_data["updated_at"] = datetime.utcnow()
+    
+    # Check if settings exist
+    existing = await db.site_settings.find_one()
+    
+    if existing:
+        await db.site_settings.update_one(
+            {"_id": existing["_id"]},
+            {"$set": update_data}
+        )
+    else:
+        await db.site_settings.insert_one(update_data)
+    
+    return {"message": "Settings updated successfully"}
+
+
 # ==================== SEED DATA ROUTE ====================
 
 @api_router.post("/seed-database")
