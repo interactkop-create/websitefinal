@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { boardMembers } from '../mock';
+import { boardAPI } from '../services/api';
 
 export const Board = () => {
+  const [boardMembers, setBoardMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBoardMembers = async () => {
+      try {
+        const response = await boardAPI.getAll();
+        setBoardMembers(response.data);
+      } catch (error) {
+        console.error('Error fetching board members:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBoardMembers();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-lg text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
