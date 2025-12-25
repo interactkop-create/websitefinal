@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { upcomingEvents } from '../mock';
+import { eventsAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
 export const UpcomingEvents = () => {
   const { toast } = useToast();
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [registeredEvents, setRegisteredEvents] = useState([]);
 
   const handleRegister = (eventId, eventTitle) => {
