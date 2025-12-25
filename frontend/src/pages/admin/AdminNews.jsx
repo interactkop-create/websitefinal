@@ -176,13 +176,10 @@ export const AdminNews = () => {
                 />
               </div>
               <div>
-                <Label htmlFor="image">Image URL</Label>
-                <Input
-                  id="image"
+                <ImageUpload
                   value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  placeholder="https://..."
-                  required
+                  onChange={(url) => setFormData({ ...formData, image: url })}
+                  label="Article Image"
                 />
               </div>
               <div className="flex gap-2">
