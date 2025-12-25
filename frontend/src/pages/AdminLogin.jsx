@@ -100,13 +100,15 @@ export const AdminLogin = () => {
                 required
               />
             </div>
-            <Button type="submit" className="w-full btn-primary" size="lg">
-              Sign In
+            <Button type="submit" className="w-full btn-primary" size="lg" disabled={loading}>
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
           </form>
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
-              <strong>Note:</strong> This is currently using mock authentication. Backend integration pending.
+              <strong>Admin Credentials:</strong><br/>
+              Email: admin@interactkop.com<br/>
+              Password: Admin@2024
             </p>
           </div>
         </CardContent>
