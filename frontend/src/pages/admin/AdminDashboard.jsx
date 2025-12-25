@@ -37,7 +37,7 @@ export const AdminDashboard = () => {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">13</div>
+            <div className="text-2xl font-bold">{stats.active_members}</div>
             <p className="text-xs text-muted-foreground">Active members</p>
           </CardContent>
         </Card>
@@ -48,30 +48,30 @@ export const AdminDashboard = () => {
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">6</div>
-            <p className="text-xs text-muted-foreground">Past & upcoming</p>
+            <div className="text-2xl font-bold">{stats.total_events}</div>
+            <p className="text-xs text-muted-foreground">This year</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">News Articles</CardTitle>
+            <CardTitle className="text-sm font-medium">Lives Impacted</CardTitle>
             <Newspaper className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">Published articles</p>
+            <div className="text-2xl font-bold">{stats.lives_impacted}</div>
+            <p className="text-xs text-muted-foreground">People helped</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Gallery Images</CardTitle>
+            <CardTitle className="text-sm font-medium">Awards Won</CardTitle>
             <Image className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">6</div>
-            <p className="text-xs text-muted-foreground">Total images</p>
+            <div className="text-2xl font-bold">{stats.awards_won}</div>
+            <p className="text-xs text-muted-foreground">Recognitions</p>
           </CardContent>
         </Card>
       </div>
