@@ -6,6 +6,7 @@ import { Label } from '../../components/ui/label';
 import { Pencil, Trash2, Plus } from 'lucide-react';
 import { boardAPI } from '../../services/api';
 import { useToast } from '../../hooks/use-toast';
+import { ImageUpload } from '../../components/ImageUpload';
 import {
   Dialog,
   DialogContent,
