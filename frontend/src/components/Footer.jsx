@@ -51,6 +51,11 @@ export const Footer = () => {
                   News
                 </Link>
               </li>
+              <li>
+                <Link to="/gallery" className="text-sm hover:text-white transition-colors">
+                  Gallery
+                </Link>
+              </li>
             </ul>
           </div>
 
