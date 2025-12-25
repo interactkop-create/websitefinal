@@ -15,6 +15,7 @@ export const AdminLayout = ({ children }) => {
     { name: 'Events', path: '/admin/events', icon: Calendar },
     { name: 'News', path: '/admin/news', icon: Newspaper },
     { name: 'Gallery', path: '/admin/gallery', icon: Image },
+    { name: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 
   const handleLogout = () => {
