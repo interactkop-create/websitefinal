@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
+import { authAPI } from '../services/api';
 
 export const AdminLogin = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const AdminLogin = () => {
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,23 +23,38 @@ export const AdminLogin = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     
-    // Mock login - will be replaced with actual authentication
-    if (formData.email && formData.password) {
+    try {
+      const response = await authAPI.login(formData.email, formData.password);
+      
+      // Store token and user data
+      localStorage.setItem('adminToken', response.data.token);
+      localStorage.setItem('adminUser', JSON.stringify(response.data.user));
+      
       toast({
         title: "Login Successful",
         description: "Redirecting to admin dashboard...",
       });
       
-      // Store mock auth token
-      localStorage.setItem('adminToken', 'mock-token');
-      
-      // Redirect to dashboard
+      // Redirect to dashboard (placeholder for now)
       setTimeout(() => {
-        navigate('/admin/dashboard');
+        toast({
+          title: "Admin Dashboard",
+          description: "Admin dashboard coming soon! You are now logged in.",
+        });
+        navigate('/');
       }, 1000);
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: error.response?.data?.detail || "Invalid email or password",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
