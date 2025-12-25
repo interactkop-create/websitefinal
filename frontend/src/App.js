@@ -19,6 +19,7 @@ import { AdminBoardMembers } from "./pages/admin/AdminBoardMembers";
 import { AdminEvents } from "./pages/admin/AdminEvents";
 import { AdminNews } from "./pages/admin/AdminNews";
 import { AdminGallery } from "./pages/admin/AdminGallery";
+import { AdminSettings } from "./pages/admin/AdminSettings";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
