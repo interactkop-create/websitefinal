@@ -208,3 +208,19 @@ class ContactInfoUpdate(BaseModel):
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     office_hours: Optional[str] = None
+
+
+# Site Settings Models
+class SiteSettings(BaseModel):
+    active_members: int = 50
+    total_events: int = 20
+    lives_impacted: int = 1000
+    awards_won: int = 5
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class SiteSettingsUpdate(BaseModel):
+    active_members: Optional[int] = None
+    total_events: Optional[int] = None
+    lives_impacted: Optional[int] = None
+    awards_won: Optional[int] = None
