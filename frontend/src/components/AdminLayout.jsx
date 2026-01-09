@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Calendar, Newspaper, Image, Settings, LogOut } from 'lucide-react';
+import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
+import {
+  LayoutDashboard,
+  Users,
+  Calendar,
+  Newspaper,
+  Image,
+  Settings,
+  LogOut
+} from 'lucide-react';
 import { Button } from './ui/button';
 import { useAuth } from '../contexts/AuthContext';
 
-export const AdminLayout = ({ children }) => {
+const AdminLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -39,13 +47,20 @@ export const AdminLayout = ({ children }) => {
               />
               <div>
                 <h1 className="text-xl font-bold text-foreground">Admin Panel</h1>
-                <p className="text-sm text-muted-foreground">Interact Club of Kolhapur</p>
+                <p className="text-sm text-muted-foreground">
+                  Interact Club of Kolhapur
+                </p>
               </div>
             </div>
+
             <div className="flex items-center space-x-4">
               <div className="text-right">
-                <p className="text-sm font-medium text-foreground">{user?.name}</p>
-                <p className="text-xs text-muted-foreground">{user?.email}</p>
+                <p className="text-sm font-medium text-foreground">
+                  {user?.name}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {user?.email}
+                </p>
               </div>
               <Button variant="outline" size="sm" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
@@ -78,8 +93,12 @@ export const AdminLayout = ({ children }) => {
               );
             })}
           </nav>
+
           <div className="p-4 border-t mt-4">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
+            <Link
+              to="/"
+              className="text-sm text-muted-foreground hover:text-primary"
+            >
               ← Back to Website
             </Link>
           </div>
@@ -87,9 +106,11 @@ export const AdminLayout = ({ children }) => {
 
         {/* Main Content */}
         <main className="flex-1 p-6">
-          {children}
+          <Outlet /> {/* ✅ ROUTED CONTENT RENDERS HERE */}
         </main>
       </div>
     </div>
   );
 };
+
+export default AdminLayout;
