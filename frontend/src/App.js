@@ -6,6 +6,15 @@ import AdminLayout from "./components/AdminLayout";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 
+import "./App.css";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import AdminLayout from "./components/AdminLayout";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+
+
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Events } from "./pages/Events";
