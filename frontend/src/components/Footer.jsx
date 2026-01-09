@@ -107,11 +107,15 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-12 pt-8 text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()} Interact Club of Kolhapur. All rights reserved.
-          </p>
-        </div>
+<div className="border-t border-slate-800 mt-12 pt-8 text-center space-y-2">
+  <p className="text-sm">
+    © {new Date().getFullYear()} Interact Club of Kolhapur. All rights reserved.
+  </p>
+  <p className="text-xs text-slate-400">
+    Made with ❤️ by Itr. Om Malani, International Service Director, Interact Club of Kolhapur, RI 2025–26
+  </p>
+</div>
+
       </div>
     </footer>
   );
