@@ -2,9 +2,10 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { AdminLayout } from "./components/AdminLayout";
+import AdminLayout from "./components/AdminLayout";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Events } from "./pages/Events";
@@ -13,6 +14,7 @@ import { Board } from "./pages/Board";
 import { News } from "./pages/News";
 import { Gallery } from "./pages/Gallery";
 import { Contact } from "./pages/Contact";
+
 import { AdminLogin } from "./pages/AdminLogin";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { AdminBoardMembers } from "./pages/admin/AdminBoardMembers";
@@ -20,58 +22,68 @@ import { AdminEvents } from "./pages/admin/AdminEvents";
 import { AdminNews } from "./pages/admin/AdminNews";
 import { AdminGallery } from "./pages/admin/AdminGallery";
 import { AdminSettings } from "./pages/admin/AdminSettings";
+
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
   return (
     <AuthProvider>
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            {/* Admin routes without header/footer */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            
-            {/* Protected admin routes with admin layout */}
-            <Route path="/admin/*" element={
+      <BrowserRouter>
+        <Routes>
+
+          {/* ---------- ADMIN LOGIN (NO LAYOUT) ---------- */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* ---------- PROTECTED ADMIN ROUTES ---------- */}
+          <Route
+            path="/admin"
+            element={
               <ProtectedRoute>
-                <AdminLayout>
-                  <Routes>
-                    <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="board-members" element={<AdminBoardMembers />} />
-                    <Route path="events" element={<AdminEvents />} />
-                    <Route path="news" element={<AdminNews />} />
-                    <Route path="gallery" element={<AdminGallery />} />
-                    <Route path="settings" element={<AdminSettings />} />
-                  </Routes>
-                </AdminLayout>
+                <AdminLayout />
               </ProtectedRoute>
-            } />
-            
-            {/* Public routes with header/footer */}
-            <Route path="/*" element={
+            }
+          >
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="board-members" element={<AdminBoardMembers />} />
+            <Route path="events" element={<AdminEvents />} />
+            <Route path="news" element={<AdminNews />} />
+            <Route path="gallery" element={<AdminGallery />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
+
+          {/* ---------- PUBLIC ROUTES ---------- */}
+          <Route
+            path="/"
+            element={
               <>
                 <Header />
                 <main className="flex-grow">
-                  <Routes>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="events" element={<Events />} />
-                    <Route path="upcoming-events" element={<UpcomingEvents />} />
-                    <Route path="board" element={<Board />} />
-                    <Route path="news" element={<News />} />
-                    <Route path="gallery" element={<Gallery />} />
-                    <Route path="contact" element={<Contact />} />
-                  </Routes>
+                  <OutletWrapper />
                 </main>
                 <Footer />
               </>
-            } />
-          </Routes>
-        </BrowserRouter>
-        <Toaster />
-      </div>
+            }
+          >
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="events" element={<Events />} />
+            <Route path="upcoming-events" element={<UpcomingEvents />} />
+            <Route path="board" element={<Board />} />
+            <Route path="news" element={<News />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
+
+      <Toaster />
     </AuthProvider>
   );
 }
+
+/* Helper component to keep JSX clean */
+import { Outlet } from "react-router-dom";
+const OutletWrapper = () => <Outlet />;
 
 export default App;
